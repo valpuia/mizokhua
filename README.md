@@ -1,83 +1,50 @@
-# :package_description
+# List of districts and villages in Mizoram
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/valpuia/mizokhua.svg?style=flat-square)](https://packagist.org/packages/valpuia/mizokhua)
+[![Total Downloads](https://img.shields.io/packagist/dt/valpuia/mizokhua.svg?style=flat-square)](https://packagist.org/packages/valpuia/mizokhua)
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+Awlsam tak a Mizoram chhung a district leh khua te neih na (Easy way to get lists of district and village in Mizoram)
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require valpuia/mizokhua
+
+php artisan mizokhua:install
 ```
+`mizokhua:install` hmang hian migration files a in published nghal a chuan run nghal turin a rawn zawt ang che (After running `mizokhua:install` it published migration files and ask you to run the migration)
 
-You can publish and run the migrations with:
-
+## Seeder
 ```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
+php artisan mizokhua:seed
 ```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
-```
+`mizokhua:seed` hmang hian districts leh villages te database ah a in dahlut anga, awlsam takin i application ah a hnuai ami ang hian i hmang thei ang (Using `mizokhua:seed` command it seeds districts and villages in database and you can easily use like below)
 
 ## Usage
 
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+use Valpuia\Mizokhua\Models\District;
+use Valpuia\Mizokhua\Models\Village;
+
+Village::with('district')
+    // ->where('district_id', 1)
+    // ->where('name', 'Aibawk')
+    ->get();
+
+District::with('villages')
+    // ->where('name', 'Aizawl')
+    ->get();
 ```
 
-## Testing
-
-```bash
-composer test
-```
+## TODO
+- Publish Seeders
+- Publish Models
 
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
@@ -85,8 +52,9 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Valpuia](https://github.com/valpuia)
 - [All Contributors](../../contributors)
+- [LGD](https://lgdirectory.gov.in/)
 
 ## License
 
